@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+
+$board-width: 350px;
+$board-height: 350px;
+
+$box-width: $board-width/3;
+$box-height: $board-height/3;
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: #ffe297;
+    font-family: poppins, sans-serif;
+}

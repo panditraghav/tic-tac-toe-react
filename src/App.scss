@@ -1,0 +1,109 @@
+$line-color: #bca874;
+$circle-color: #ec869e;
+$cross-color: #559b8a;
+
+#LineYLeft,
+#LineYRight,
+#LineXUpper,
+#LineXLower {
+    stroke: $line-color;
+}
+
+#LineYLeft,
+#LineYRight {
+    stroke-dasharray: 350px 350px;
+    stroke-dashoffset: 350px;
+    animation: line-anim 0.5s forwards ease-in-out;
+}
+#LineXUpper,
+#LineXLower {
+    stroke-dasharray: 350px 350px;
+    stroke-dashoffset: 350px;
+    animation: line-anim 0.5s forwards ease-in-out;
+    animation-delay: 0.5s;
+}
+
+.board {
+    margin: 100px auto;
+    position: relative;
+    width: 300px;
+
+    .boxes {
+        position: absolute;
+        top: 0px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+
+        .box {
+            background-color: transparent;
+            border: none;
+            padding: 0px;
+
+            &:active {
+                background-color: transparent;
+            }
+            &:focus {
+                background-color: transparent;
+            }
+        }
+    }
+    .cross {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        left: -35px;
+        top: 10px;
+
+        .first {
+            position: absolute;
+            stroke-dasharray: 86px 86px;
+            stroke-dashoffset: 86px;
+            animation: cross-anim 0.40s;
+            animation-fill-mode: forwards;
+
+            line {
+                stroke: $cross-color;
+            }
+        }
+        .second {
+            stroke: $cross-color;
+            position: absolute;
+            stroke-dasharray: 86px 86px;
+            stroke-dashoffset: 86px;
+            animation: cross-anim 0.40s;
+            animation-fill-mode: forwards;
+            animation-delay: 0.40s;
+            line {
+                stroke: $cross-color;
+            }
+        }
+    }
+    .circle {
+        circle {
+            stroke: $circle-color;
+        }
+        color: $circle-color;
+        stroke-dasharray: 304.73px 304.73px;
+        stroke-dashoffset: 304.73px;
+        animation: circle-anim 1.2s;
+        animation-fill-mode: forwards;
+    }
+}
+
+@keyframes circle-anim {
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes cross-anim {
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}
+
+@keyframes line-anim {
+    100% {
+        stroke-dashoffset: 0px;
+    }
+}

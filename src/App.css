@@ -1,38 +1,143 @@
-.App {
-  text-align: center;
+#LineYLeft,
+#LineYRight,
+#LineXUpper,
+#LineXLower {
+  stroke: #bca874;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#LineYLeft,
+#LineYRight {
+  stroke-dasharray: 350px 350px;
+  stroke-dashoffset: 350px;
+  -webkit-animation: line-anim 0.5s forwards ease-in-out;
+          animation: line-anim 0.5s forwards ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+#LineXUpper,
+#LineXLower {
+  stroke-dasharray: 350px 350px;
+  stroke-dashoffset: 350px;
+  -webkit-animation: line-anim 0.5s forwards ease-in-out;
+          animation: line-anim 0.5s forwards ease-in-out;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+.board {
+  margin: 100px auto;
+  position: relative;
+  width: 300px;
+}
+
+.board .boxes {
+  position: absolute;
+  top: 0px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+}
+
+.board .boxes .box {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+
+.board .boxes .box:active {
+  background-color: transparent;
+}
+
+.board .boxes .box:focus {
+  background-color: transparent;
+}
+
+.board .cross {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: -35px;
+  top: 10px;
+}
+
+.board .cross .first {
+  position: absolute;
+  stroke-dasharray: 86px 86px;
+  stroke-dashoffset: 86px;
+  -webkit-animation: cross-anim 0.40s;
+          animation: cross-anim 0.40s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.board .cross .first line {
+  stroke: #559b8a;
+}
+
+.board .cross .second {
+  stroke: #559b8a;
+  position: absolute;
+  stroke-dasharray: 86px 86px;
+  stroke-dashoffset: 86px;
+  -webkit-animation: cross-anim 0.40s;
+          animation: cross-anim 0.40s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.40s;
+          animation-delay: 0.40s;
+}
+
+.board .cross .second line {
+  stroke: #559b8a;
+}
+
+.board .circle {
+  color: #ec869e;
+  stroke-dasharray: 304.73px 304.73px;
+  stroke-dashoffset: 304.73px;
+  -webkit-animation: circle-anim 1.2s;
+          animation: circle-anim 1.2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.board .circle circle {
+  stroke: #ec869e;
+}
+
+@-webkit-keyframes circle-anim {
+  100% {
+    stroke-dashoffset: 0px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@keyframes circle-anim {
+  100% {
+    stroke-dashoffset: 0px;
   }
 }
+
+@-webkit-keyframes cross-anim {
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes cross-anim {
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@-webkit-keyframes line-anim {
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes line-anim {
+  100% {
+    stroke-dashoffset: 0px;
+  }
+}
+/*# sourceMappingURL=App.css.map */
