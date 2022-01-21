@@ -2,6 +2,19 @@ $line-color: #bca874;
 $circle-color: #ec869e;
 $cross-color: #559b8a;
 
+// Header Styles
+
+header{
+    font-size: 3em;
+    text-align: center;
+    color: #955033;
+    padding: .5em 0em;
+}
+
+
+
+//Board Styles
+
 #LineYLeft,
 #LineYRight,
 #LineXUpper,

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
 $board-width: 350px;
 $board-height: 350px;
@@ -13,5 +13,5 @@ $box-height: $board-height/3;
 
 body {
     background-color: #ffe297;
-    font-family: poppins, sans-serif;
+    font-family: 'Comic Neue', cursive;;
 }

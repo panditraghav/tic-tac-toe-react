@@ -1,9 +1,5 @@
-import React from "react";
-import Boxes from './Boxes';
-import "../board.svg";
-
-const boardSVG = <svg className="boardSVG" width="300" height="300" viewBox="0 0 350 350" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
+<svg className="boardSVG" width="300" height="300" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg"
+    onClick={(e)=> props.onClick(e)}>
     <g id="Board" clipPath="url(#clip0_116_45)">
         <line id="LineYLeft" x1="121.667" y1="5" x2="121.667" y2="345" stroke="black" strokeWidth="10"
             strokeLinecap="round" />
@@ -19,16 +15,4 @@ const boardSVG = <svg className="boardSVG" width="300" height="300" viewBox="0 0
             <rect width="350" height="350" fill="white" />
         </clipPath>
     </defs>
-</svg>;
-
-function Board(props) {
-    return (
-        <div className="board">
-            {boardSVG}
-            <Boxes board={props.gameState.board} mark={props.gameState.mark} width="100px" height="100px" boxOnClick={props.boxOnClick} />
-        </div>
-    )
-}
-
-
-export default Board;
+</svg>
