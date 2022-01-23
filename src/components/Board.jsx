@@ -1,6 +1,5 @@
 import React from "react";
 import Boxes from './Boxes';
-import "../board.svg";
 
 const boardSVG = <svg className="boardSVG" width="300" height="300" viewBox="0 0 350 350" fill="none"
     xmlns="http://www.w3.org/2000/svg">

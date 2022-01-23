@@ -71,7 +71,7 @@ header{
             position: absolute;
             stroke-dasharray: 86px 86px;
             stroke-dashoffset: 86px;
-            animation: cross-anim 0.40s;
+            animation: cross-anim 0.3s;
             animation-fill-mode: forwards;
 
             line {
@@ -82,10 +82,10 @@ header{
             stroke: $cross-color;
             position: absolute;
             stroke-dasharray: 86px 86px;
-            stroke-dashoffset: 86px;
-            animation: cross-anim 0.40s;
+            stroke-dashoffset: -86px;
+            animation: cross-anim 0.3s;
             animation-fill-mode: forwards;
-            animation-delay: 0.40s;
+            animation-delay: 0.3s;
             line {
                 stroke: $cross-color;
             }
@@ -97,8 +97,8 @@ header{
         }
         color: $circle-color;
         stroke-dasharray: 304.73px 304.73px;
-        stroke-dashoffset: 304.73px;
-        animation: circle-anim 1.2s;
+        stroke-dashoffset: -304.73px;
+        animation: circle-anim .6s;
         animation-fill-mode: forwards;
     }
 }

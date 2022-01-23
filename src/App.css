@@ -71,8 +71,8 @@ header {
   position: absolute;
   stroke-dasharray: 86px 86px;
   stroke-dashoffset: 86px;
-  -webkit-animation: cross-anim 0.40s;
-          animation: cross-anim 0.40s;
+  -webkit-animation: cross-anim 0.3s;
+          animation: cross-anim 0.3s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -85,13 +85,13 @@ header {
   stroke: #559b8a;
   position: absolute;
   stroke-dasharray: 86px 86px;
-  stroke-dashoffset: 86px;
-  -webkit-animation: cross-anim 0.40s;
-          animation: cross-anim 0.40s;
+  stroke-dashoffset: -86px;
+  -webkit-animation: cross-anim 0.3s;
+          animation: cross-anim 0.3s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.40s;
-          animation-delay: 0.40s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 
 .board .cross .second line {
@@ -101,9 +101,9 @@ header {
 .board .circle {
   color: #ec869e;
   stroke-dasharray: 304.73px 304.73px;
-  stroke-dashoffset: 304.73px;
-  -webkit-animation: circle-anim 1.2s;
-          animation: circle-anim 1.2s;
+  stroke-dashoffset: -304.73px;
+  -webkit-animation: circle-anim .6s;
+          animation: circle-anim .6s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
