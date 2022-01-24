@@ -1,7 +1,7 @@
 function Header(props){
     return (
         <header>
-            Level {props.level}
+            Tic Tac Toe
         </header>
     )
 }

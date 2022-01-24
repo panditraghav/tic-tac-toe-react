@@ -1,4 +1,3 @@
-import React from "react";
 import Boxes from './Boxes';
 
 const boardSVG = <svg className="boardSVG" width="300" height="300" viewBox="0 0 350 350" fill="none"
@@ -20,13 +19,14 @@ const boardSVG = <svg className="boardSVG" width="300" height="300" viewBox="0 0
     </defs>
 </svg>;
 
-function Board(props) {
+function Transition(props) {
+
     return (
         <div className="main">
             <div className="level">Level {props.gameState.level}</div>
             <div className="board">
                 {boardSVG}
-                <Boxes board={props.gameState.board} mark={props.gameState.mark} width="100px" height="100px" boxOnClick={props.boxOnClick} />
+                <Boxes board={props.gameState.board} mark={props.gameState.mark} width="100px" height="100px" />
             </div>
         </div>
 
@@ -34,4 +34,4 @@ function Board(props) {
 }
 
 
-export default Board;
+export default Transition;

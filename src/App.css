@@ -2,7 +2,7 @@ header {
   font-size: 3em;
   text-align: center;
   color: #955033;
-  padding: .5em 0em;
+  padding: 0.5em 0em;
 }
 
 #LineYLeft,
@@ -30,6 +30,13 @@ header {
           animation-delay: 0.5s;
 }
 
+.level {
+  font-size: 2em;
+  text-align: center;
+  color: #955033;
+  padding: 0;
+}
+
 .board {
   margin: 100px auto;
   position: relative;
@@ -53,31 +60,28 @@ header {
 
 .board .boxes .box:active {
   background-color: transparent;
+  border: none;
 }
 
 .board .boxes .box:focus {
   background-color: transparent;
+  border: none;
 }
 
 .board .cross {
   position: relative;
   width: 100px;
   height: 100px;
-  left: -35px;
-  top: 10px;
 }
 
 .board .cross .first {
   position: absolute;
   stroke-dasharray: 86px 86px;
-  stroke-dashoffset: 86px;
-  -webkit-animation: cross-anim 0.3s;
-          animation: cross-anim 0.3s;
+  stroke-dashoffset: -86px;
+  -webkit-animation: cross-anim 0.15s;
+          animation: cross-anim 0.15s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-}
-
-.board .cross .first line {
   stroke: #559b8a;
 }
 
@@ -85,16 +89,13 @@ header {
   stroke: #559b8a;
   position: absolute;
   stroke-dasharray: 86px 86px;
-  stroke-dashoffset: -86px;
-  -webkit-animation: cross-anim 0.3s;
-          animation: cross-anim 0.3s;
+  stroke-dashoffset: 86px;
+  -webkit-animation: cross-anim 0.2s;
+          animation: cross-anim 0.2s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
-}
-
-.board .cross .second line {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
   stroke: #559b8a;
 }
 
@@ -102,8 +103,8 @@ header {
   color: #ec869e;
   stroke-dasharray: 304.73px 304.73px;
   stroke-dashoffset: -304.73px;
-  -webkit-animation: circle-anim .6s;
-          animation: circle-anim .6s;
+  -webkit-animation: circle-anim 0.4s;
+          animation: circle-anim 0.4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }

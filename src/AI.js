@@ -1,5 +1,19 @@
 const players = { human: "X", AI: "O" };
 
+const winningPositions = [
+    //All rows
+    [{ r: 0, c: 0 }, { r: 0, c: 1 }, { r: 0, c: 2 }],
+    [{ r: 1, c: 0 }, { r: 1, c: 1 }, { r: 1, c: 2 }],
+    [{ r: 2, c: 0 }, { r: 2, c: 1 }, { r: 2, c: 2 }],
+    //All columns
+    [{ r: 0, c: 0 }, { r: 1, c: 0 }, { r: 2, c: 0 }],
+    [{ r: 0, c: 1 }, { r: 1, c: 1 }, { r: 2, c: 1 }],
+    [{ r: 0, c: 2 }, { r: 1, c: 2 }, { r: 2, c: 2 }],
+    //Diagonals
+    [{ r: 0, c: 0 }, { r: 1, c: 1 }, { r: 2, c: 2 }],
+    [{ r: 2, c: 0 }, { r: 1, c: 1 }, { r: 0, c: 2 }],
+];
+
 class Move {
     constructor(row, col) {
         this.row = row;
@@ -17,58 +31,47 @@ export function isMovesLeft(board) {
     return false;
 }
 
-export function evaluatePosition(board) {
+function getWinningPositionIndex(board){
+    let winningPositionIndex = -1;
+    winningPositions.forEach((value, index) => {
+        if (board[value[0].r][value[0].c] === board[value[1].r][value[1].c] &&
+            board[value[2].r][value[2].c] === board[value[1].r][value[1].c]) {
+                
+            winningPositionIndex = index;
+        }
+    });
 
-    //Checking for all rows if marks of any row match
-    for (let row = 0; row < 3; row++) {
-        if (board[row][0] === board[row][1] &&
-            board[row][1] === board[row][2]) {
-            if (board[row][0] === players.human) {
-                return 10;
-            } else if (board[row][0] === players.AI) {
-                return -10;
-            }
-        }
-    }
-    //Checking for columns
-    for (let col = 0; col < 3; col++) {
-        if (board[0][col] === board[1][col] &&
-            board[1][col] === board[2][col]) {
-            if (board[0][col] === players.human) {
-                return 10;
-            } else if (board[0][col] === players.AI) {
-                return -10;
-            }
-        }
-    }
-
-    //Checking for first diagonal
-    if (board[0][0] === board[1][1] &&
-        board[1][1] === board[2][2]) {
-        if (board[0][0] === players.human) {
-            return 10;
-        } else if (board[0][0] === players.AI) {
-            return -10;
-        }
-    }
-    //Checking for second diagonal
-    if (board[0][2] === board[1][1] &&
-        board[1][1] === board[2][0]) {
-        if (board[0][2] === players.human) {
-            return 10;
-        } else if (board[0][2] === players.AI) {
-            return -10;
-        }
-    }
-    //If none of above returns conditions states true then game will be a draw (0 for draw)
-    return 0;
+    return winningPositionIndex;
 }
 
-function minimax(board, depth, isMax) {
+export function evaluatePosition(board) {
+    let returnVal = 0;
+    winningPositions.forEach((value, index) => {
+        if (board[value[0].r][value[0].c] === board[value[1].r][value[1].c] &&
+            board[value[2].r][value[2].c] === board[value[1].r][value[1].c]) {
+            // console.log(value);
+            if (board[value[0].r][value[0].c] === players.human) {
+                returnVal = 10;
+            } else if (board[value[0].r][value[0].c] === players.AI) {
+                returnVal = -10;
+            }
+        }
+    });
+
+    //If none of above returns conditions states true then game will be a draw (0 for draw)
+    return returnVal;
+}
+
+function minimax(board, depth, isMax, height) {
     let score = evaluatePosition(board);
 
+    // console.log(depth);
+    if (height === depth) {
+        return score;
+    }
     //If maximizer wins
     if (score === 10) {
+        console.log(score);
         return score;
     }
     //If minimizer wins
@@ -89,14 +92,15 @@ function minimax(board, depth, isMax) {
 
                     board[i][j] = players.human;
 
-                    best = Math.max(best, minimax(board, depth + 1, !isMax));
+                    best = Math.max(best, minimax(board, depth + 1, !isMax, height));
 
                     board[i][j] = "";
                 }
             }
         }
-
-        return best;
+        // console.log(best-depth);
+        return best - depth;
+        // return best;
     }
     //If it is minimizer's turn
     else {
@@ -109,39 +113,44 @@ function minimax(board, depth, isMax) {
 
                     board[i][j] = players.AI;
 
-                    best = Math.min(best, minimax(board, depth + 1, !isMax, players));
+                    best = Math.min(best, minimax(board, depth + 1, !isMax, height));
 
                     board[i][j] = "";
                 }
             }
         }
-        return best;
+        return best + depth;
+        // return best;
     }
 }
 
 function findRandomMove(board) {
     let randomMove = new Move(Math.floor(Math.random() * 3), Math.floor(Math.random() * 3));
-    if(board[randomMove.row][randomMove.col] === ""){
+    if (board[randomMove.row][randomMove.col] === "") {
         return randomMove;
-    }else{
+    } else {
         return findRandomMove(board);
     }
 }
 
-export function findMove(board, level) {
 
-    switch (level) {
-        case 1:
-            let randomMove =  findRandomMove(board);
-            console.log(randomMove);
-            return randomMove;
+export function findMoveForLevel(board, level) {
+    var height = level;
 
-        case 2:
 
+    if (level === 1) {
+        let randomMove = findRandomMove(board);
+        return randomMove;
     }
-    let bestMove = new Move(0, 0);
-    let bestVal = 1000;
+    else if (level === 3) {
+        height = 4;
+    } else if (level === 4) {
+        height = 7;
+    }
 
+
+    let move = new Move(0, 0);
+    let bestVal = 1000;
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
 
@@ -149,19 +158,19 @@ export function findMove(board, level) {
 
                 board[i][j] = players.AI;
 
-                let moveVal = minimax(board, 0, true);
+                let moveVal = minimax(board, 0, true, height);
 
                 board[i][j] = "";
 
                 if (moveVal < bestVal) {
-                    bestMove.row = i;
-                    bestMove.col = j;
+                    move.row = i;
+                    move.col = j;
                     bestVal = moveVal;
                 }
             }
         }
     }
-    return bestMove;
+    return move;
 
 }
 
