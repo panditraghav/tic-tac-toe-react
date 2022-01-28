@@ -13,25 +13,27 @@ header {
 
 //Board Styles
 
-#LineYLeft,
-#LineYRight,
-#LineXUpper,
-#LineXLower {
-    stroke: $line-color;
-}
+.playing {
+    #LineYLeft,
+    #LineYRight,
+    #LineXUpper,
+    #LineXLower {
+        stroke: $line-color;
+    }
 
-#LineYLeft,
-#LineYRight {
-    stroke-dasharray: 350px 350px;
-    stroke-dashoffset: 350px;
-    animation: line-anim 0.5s forwards ease-in-out;
-}
-#LineXUpper,
-#LineXLower {
-    stroke-dasharray: 350px 350px;
-    stroke-dashoffset: 350px;
-    animation: line-anim 0.5s forwards ease-in-out;
-    animation-delay: 0.5s;
+    #LineYLeft,
+    #LineYRight {
+        stroke-dasharray: 350px 350px;
+        stroke-dashoffset: 350px;
+        // animation: line-anim 0.5s forwards ease-in-out;
+    }
+    #LineXUpper,
+    #LineXLower {
+        stroke-dasharray: 350px 350px;
+        stroke-dashoffset: 350px;
+        // animation: line-anim 0.5s forwards ease-in-out;
+        // animation-delay: 0.5s;
+    }
 }
 
 .level {
@@ -41,80 +43,141 @@ header {
     padding: 0;
 }
 
-.board {
-    margin: 100px auto;
+.playing {
+    .board {
+        margin: 100px auto;
+        position: relative;
+        width: 300px;
+
+        .boxes {
+            position: absolute;
+            top: 0px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            .box {
+                background-color: transparent;
+                border: none;
+                padding: 0px;
+
+                &:active {
+                    background-color: transparent;
+                    border: none;
+                }
+                &:focus {
+                    background-color: transparent;
+                    border: none;
+                }
+            }
+        }
+        .cross {
+            position: relative;
+            width: 100px;
+            height: 100px;
+
+            .first {
+                position: absolute;
+                stroke-dasharray: 86px 86px;
+                stroke-dashoffset: -86px;
+                stroke: $cross-color;
+            }
+            .second {
+                stroke: $cross-color;
+                position: absolute;
+                stroke-dasharray: 86px 86px;
+                stroke-dashoffset: 86px;
+                stroke: $cross-color;
+            }
+        }
+        .circle {
+            circle {
+                stroke: $circle-color;
+            }
+            color: $circle-color;
+            stroke-dasharray: 304.73px 304.73px;
+            stroke-dashoffset: -304.73px;
+        }
+    }
+}
+
+.transition {
+    #LineYLeft,
+    #LineYRight,
+    #LineXUpper,
+    #LineXLower {
+        stroke: $line-color;
+    }
+
+    .board {
+        margin: 100px auto;
+        position: relative;
+        width: 300px;
+
+        .boxes {
+            position: absolute;
+            top: 0px;
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            .box {
+                background-color: transparent;
+                border: none;
+                padding: 0px;
+
+                &:active {
+                    background-color: transparent;
+                    border: none;
+                }
+                &:focus {
+                    background-color: transparent;
+                    border: none;
+                }
+            }
+        }
+        .cross {
+            position: relative;
+            width: 100px;
+            height: 100px;
+
+            .first {
+                position: absolute;
+                stroke: $cross-color;
+            }
+            .second {
+                stroke: $cross-color;
+                position: absolute;
+                stroke: $cross-color;
+            }
+        }
+        .circle {
+            circle {
+                stroke: $circle-color;
+            }
+            color: $circle-color;
+        }
+    }
+}
+
+.line {
+    box-sizing: border-box;
+    position: absolute;
+    margin: -458px auto;
     position: relative;
     width: 300px;
+    display: flex;
+    align-items: center;
+    padding-right: 44px;
+    padding-left: 42px;
+    visibility: hidden;
 
-    .boxes {
-        position: absolute;
-        top: 0px;
-        display: grid;
-        grid-template-columns: auto auto auto;
-
-        .box {
-            background-color: transparent;
-            border: none;
-            padding: 0px;
-
-            &:active {
-                background-color: transparent;
-                border: none;
-            }
-            &:focus {
-                background-color: transparent;
-                border: none;
-            }
-        }
+    .svg{
+        stroke-dasharray: 404px 404px;
+        stroke-dashoffset: 404px;
     }
-    .cross {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        // left: -35px;
-        // top: 10px;
 
-        .first {
-            position: absolute;
-            stroke-dasharray: 86px 86px;
-            stroke-dashoffset: -86px;
-            animation: cross-anim 0.15s;
-            animation-fill-mode: forwards;
-            stroke: $cross-color;
-        }
-        .second {
-            stroke: $cross-color;
-            position: absolute;
-            stroke-dasharray: 86px 86px;
-            stroke-dashoffset: 86px;
-            animation: cross-anim 0.2s;
-            animation-fill-mode: forwards;
-            animation-delay: 0.2s;
-            stroke: $cross-color;
-        }
-    }
-    .circle {
-        circle {
-            stroke: $circle-color;
-        }
-        color: $circle-color;
-        stroke-dasharray: 304.73px 304.73px;
-        stroke-dashoffset: -304.73px;
-        animation: circle-anim 0.4s;
-        animation-fill-mode: forwards;
-    }
-}
-
-@keyframes circle-anim {
-    100% {
-        stroke-dashoffset: 0px;
-    }
-}
-
-@keyframes cross-anim {
-    100% {
-        stroke-dashoffset: 0px;
-    }
+    //These property below to be changed to make it display in different row positions
+    // justify-content: center;
+    // transform: rotate(0deg);
 }
 
 @keyframes line-anim {

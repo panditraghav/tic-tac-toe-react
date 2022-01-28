@@ -1,6 +1,9 @@
-import './App.css';
-import { findMoveForLevel, evaluatePosition, isMovesLeft } from './AI';
-import { useState } from 'react';
+import './App.scss';
+import gsap from 'gsap';
+import { findMoveForLevel } from './AI';
+import { getGameStatus } from "./utils";
+import { useState, useEffect, useRef } from 'react';
+import { boardAnimatmion, circleAnimation, crossAnimation, transitionAnim } from './animations';
 
 import Board from './components/Board';
 import Header from './components/Header';
@@ -12,7 +15,6 @@ const players = {
 }; // X is human and O is AI
 const gameStatus = {
   playing: 1,
-  win: 2,
   draw: 3,
   transition: 4
 }
@@ -31,31 +33,39 @@ function Game() {
     ["", "", ""],
     ["", "", ""]],
     gameStatus: gameStatus.playing,
-    level: 3,
+    previousLevel: 0,
+    currentLevel: 3,
     playerTurn: players.human,// Selecting a random player at begining
     playerWon: null
   });
 
-  function getGameStatus(newGameState) {
-    // If X has won
-    if (evaluatePosition(newGameState.board) === 10) {
-      console.log("X Won!");
-      newGameState.level++;
-      newGameState.gameStatus = gameStatus.win;
+  const appRef = useRef();
+  const appRefSelector = gsap.utils.selector(appRef);
+  const crossCircleTl = useRef();
+  const transitionAnimation = useRef();
+
+  //Use effect for cross and circles and board animation
+  useEffect(() => {
+
+    crossCircleTl.current = gsap.timeline()
+      .add(crossAnimation(appRefSelector))
+      .add(circleAnimation(appRefSelector))
+      .add(boardAnimatmion(appRefSelector))
+    crossCircleTl.current.timeScale(1.5);//decrease the timeline scale 1.5 times (increase speed 1.5 times)
+
+  }, [gameState]);
+
+
+  //For transition
+  useEffect(() => {
+    
+    if(gameState.gameStatus === gameStatus.transition){
+
+      transitionAnimation.current = gsap.timeline()
+        .add(transitionAnim(appRefSelector));
     }
-    //If O has won
-    else if (evaluatePosition(newGameState.board) === -10) {
-      console.log("O won!");
-      newGameState.level--;
-      newGameState.gameStatus = gameStatus.win;
-    }
-    //If Game is drawn
-    else if (evaluatePosition(newGameState.board) === 0 && !isMovesLeft(newGameState.board)) {
-      console.log("It's a draw!");
-      newGameState.gameStatus = gameStatus.draw;
-    }
-    return newGameState;
-  }
+
+  }, [gameState.gameStatus]);
 
   function makeAIMove() {
     let newGameState = gameState;
@@ -64,23 +74,32 @@ function Game() {
       newGameState.gameStatus === gameStatus.playing &&
       newGameState.playerWon === null) {
 
-      let move = findMoveForLevel(newGameState.board, newGameState.level); //Find the move
+      let move = findMoveForLevel(newGameState.board, newGameState.currentLevel); //Find the move
 
       newGameState.board[move.row][move.col] = newGameState.playerTurn;
       newGameState.playerTurn = newGameState.playerTurn === players.human ? players.AI : players.human;
 
-      newGameState = getGameStatus(newGameState); // Checks if any player won or draws
-
       setGameState({
         ...newGameState
       });
+
+      newGameState = getGameStatus(newGameState);
+
+      if (newGameState.gameStatus === gameStatus.transition) {
+        console.log("Transition time!");
+        setTimeout(() => {
+          setGameState({
+            ...newGameState
+          });
+        }, 400)
+      }
+
     }
 
   }
 
   function makeHumanMove(e) {
     let newGameState = gameState;
-    console.log(evaluatePosition(newGameState.board))
 
     if (e.target.className === "box" &&
       newGameState.gameStatus === gameStatus.playing &&
@@ -94,11 +113,20 @@ function Game() {
         newGameState.playerTurn = newGameState.playerTurn === players.human ? players.AI : players.human;
       }
 
-      newGameState = getGameStatus(newGameState);
-
       setGameState({
         ...newGameState
       });
+
+      newGameState = getGameStatus(newGameState);
+
+      if (newGameState.gameStatus === gameStatus.transition) {
+        console.log("Transition time!");
+        setTimeout(() => {
+          setGameState({
+            ...newGameState
+          });
+        }, 400)
+      }
 
       setTimeout(() => {
         makeAIMove();
@@ -109,19 +137,19 @@ function Game() {
   }
 
 
-
   return (
-    <div className="App">
+    <div ref={appRef} className="App">
       <Header />
-      <Board gameState={gameState} boxOnClick={makeHumanMove} />
+      {gameState.gameStatus === gameStatus.playing &&
+        <Board className="playing" gameState={gameState} boxOnClick={makeHumanMove} level={gameState.currentLevel} />
+      }
 
       {gameState.gameStatus === gameStatus.transition &&
-        <Transition gameState={gameState}/>
+        <Transition gameState={gameState} />
       }
     </div>
   );
 }
-
 
 
 export default Game;

@@ -7,7 +7,7 @@ function Box(props) {
         return (
 
             <button className="box" id={props.id} style={{ width: props.width, height: props.height }} onClick={e => props.boxOnClick(e)}>
-                <Cross />
+                <Cross/>
             </button>
         );
     }
@@ -23,7 +23,7 @@ function Box(props) {
         return (
 
             <button className="box" id={props.id} style={{ width: props.width, height: props.height }} onClick={e => props.boxOnClick(e)}>
-
+                   
             </button>
         )
     }
