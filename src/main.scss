@@ -1,14 +1,35 @@
-$line-color: #bca874;
-$circle-color: #ec869e;
-$cross-color: #559b8a;
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap");
+
+$frame-color: #9B948F;
+$circle-color: #D96098;
+$cross-color: #24A19C;
+$background-color: #FAEEE7;
+$main-color: #325288;
 
 // Header Styles
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: $background-color;
+    font-family: "Comic Neue", cursive;
+}
 
 header {
     font-size: 3em;
     text-align: center;
-    color: #955033;
+    color: $main-color;
     padding: 0.5em 0em;
+}
+
+.level {
+    font-size: 2em;
+    text-align: center;
+    color: $main-color;
+    padding: 0;
 }
 
 //Board Styles
@@ -18,7 +39,7 @@ header {
     #LineYRight,
     #LineXUpper,
     #LineXLower {
-        stroke: $line-color;
+        stroke: $frame-color;
     }
 
     #LineYLeft,
@@ -34,13 +55,6 @@ header {
         // animation: line-anim 0.5s forwards ease-in-out;
         // animation-delay: 0.5s;
     }
-}
-
-.level {
-    font-size: 2em;
-    text-align: center;
-    color: #955033;
-    padding: 0;
 }
 
 .playing {
@@ -105,7 +119,7 @@ header {
     #LineYRight,
     #LineXUpper,
     #LineXLower {
-        stroke: $line-color;
+        stroke: $frame-color;
     }
 
     .board {
@@ -170,14 +184,26 @@ header {
     padding-left: 42px;
     visibility: hidden;
 
-    .svg{
+    svg {
         stroke-dasharray: 404px 404px;
         stroke-dashoffset: 404px;
+        line {
+            stroke: $main-color;
+        }
     }
 
     //These property below to be changed to make it display in different row positions
     // justify-content: center;
     // transform: rotate(0deg);
+}
+
+.result {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 270px;
+    font-size: 0em;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
 }
 
 @keyframes line-anim {

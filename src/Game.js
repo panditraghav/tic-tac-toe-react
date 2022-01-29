@@ -1,7 +1,6 @@
-import './App.scss';
 import gsap from 'gsap';
 import { findMoveForLevel } from './AI';
-import { getGameStatus } from "./utils";
+import {getGameStateAfterTransition , getGameStatus } from "./utils";
 import { useState, useEffect, useRef } from 'react';
 import { boardAnimatmion, circleAnimation, crossAnimation, transitionAnim } from './animations';
 
@@ -13,6 +12,11 @@ const players = {
   human: "X",
   AI: "O"
 }; // X is human and O is AI
+
+const playerColors = {
+  human: "#24A19C",
+  AI: "#D96098"
+}
 const gameStatus = {
   playing: 1,
   draw: 3,
@@ -34,7 +38,7 @@ function Game() {
     ["", "", ""]],
     gameStatus: gameStatus.playing,
     previousLevel: 0,
-    currentLevel: 3,
+    currentLevel: 1,
     playerTurn: players.human,// Selecting a random player at begining
     playerWon: null
   });
@@ -53,19 +57,19 @@ function Game() {
       .add(boardAnimatmion(appRefSelector))
     crossCircleTl.current.timeScale(1.5);//decrease the timeline scale 1.5 times (increase speed 1.5 times)
 
-  }, [gameState]);
+  });
 
 
   //For transition
   useEffect(() => {
-    
-    if(gameState.gameStatus === gameStatus.transition){
+
+    if (gameState.gameStatus === gameStatus.transition) {
 
       transitionAnimation.current = gsap.timeline()
         .add(transitionAnim(appRefSelector));
     }
 
-  }, [gameState.gameStatus]);
+  });
 
   function makeAIMove() {
     let newGameState = gameState;
@@ -86,12 +90,25 @@ function Game() {
       newGameState = getGameStatus(newGameState);
 
       if (newGameState.gameStatus === gameStatus.transition) {
-        console.log("Transition time!");
+        //Change gameState to transition after player move animation is completed
         setTimeout(() => {
           setGameState({
-            ...newGameState
+            ...newGameState,
           });
         }, 400)
+        console.log(newGameState);
+
+        //Change gameState to playing and clear board
+        setTimeout(() => {
+          console.log("New g.s time");
+
+          newGameState = getGameStateAfterTransition(newGameState);
+          console.log(newGameState);
+
+          setGameState({
+            ...newGameState
+          })
+        }, 6500)
       }
 
     }
@@ -120,12 +137,22 @@ function Game() {
       newGameState = getGameStatus(newGameState);
 
       if (newGameState.gameStatus === gameStatus.transition) {
-        console.log("Transition time!");
+        //Change gameState to transition after player move animation is completed
         setTimeout(() => {
           setGameState({
             ...newGameState
           });
         }, 400)
+
+        //Change transition to playing and clear board
+        setTimeout(() => {
+
+          newGameState = getGameStateAfterTransition(newGameState);
+          console.log(newGameState);
+          setGameState({
+            ...newGameState
+          })
+        }, 6500)
       }
 
       setTimeout(() => {
@@ -145,7 +172,7 @@ function Game() {
       }
 
       {gameState.gameStatus === gameStatus.transition &&
-        <Transition gameState={gameState} />
+        <Transition gameState={gameState} playerColors={playerColors}/>
       }
     </div>
   );

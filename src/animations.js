@@ -12,28 +12,28 @@ export function crossAnimation(selector) {
     return tl;
 }
 
-export function circleAnimation(selector){
+export function circleAnimation(selector) {
     var tl = gsap.timeline();
-    tl.to(selector(".circle"),{
+    tl.to(selector(".circle"), {
         strokeDashoffset: 0
     });
 
     return tl;
 }
 
-export function boardAnimatmion(selector){
+export function boardAnimatmion(selector) {
     var tl = gsap.timeline();
-    tl.to(selector("#LineYLeft,#LineYRight"),{
+    tl.to(selector("#LineYLeft,#LineYRight"), {
         strokeDashoffset: 0
     });
-    tl.to(selector("#LineXUpper,#LineXLower"),{
+    tl.to(selector("#LineXUpper,#LineXLower"), {
         strokeDashoffset: 0
     });
 
     return tl;
 };
 
-function lineAnim(selector){
+function lineAnim(selector) {
     let tl = gsap.timeline();
 
     let fromPropertiesSvg = {
@@ -45,30 +45,41 @@ function lineAnim(selector){
         strokeDashoffset: 0,
     }
 
-    tl.fromTo(selector(".line svg"),fromPropertiesSvg,toPropertiesSvg)
+    tl.fromTo(selector(".line svg"), fromPropertiesSvg, toPropertiesSvg)
     // tl.fromTo(selector(".line svg"),fromPropertiesSvg,toPropertiesSvg)
-    
+
     return tl;
 
 }
 
-function hideBoardAnim(selector){
+function hideBoardAnim(selector) {
     let tl = gsap.timeline();
 
-    tl.to(selector(".line, .board"),{
+    tl.to(selector(".line, .board"), {
         opacity: 0,
     })
     return tl;
 }
 
-function displayResultAnim(selector){
-
+function displayResultAnim(selector) {
+    let tl = gsap.timeline();
+    tl.to(selector(".result"), {
+        duration: "1",
+        fontSize: "4.3em",
+        textShadow: "3px 3px 4px rgba(0, 0, 0, 0.25)",
+        repeat: 1,
+        repeatDelay: 1,
+        yoyo: true,
+        ease: "power3.out",
+    })
+    return tl;
 }
 
-export function transitionAnim(selector){
-    var tl = gsap.timeline({delay: 1})
-    .add(lineAnim(selector))
-    .add(hideBoardAnim(selector),"+=1")
+export function transitionAnim(selector) {
+    var tl = gsap.timeline({ delay: 1 })
+        .add(lineAnim(selector))
+        .add(hideBoardAnim(selector), "+=1")
+        .add(displayResultAnim(selector))
 
     return tl;
 }

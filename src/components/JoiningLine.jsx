@@ -5,7 +5,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(-90deg)",justifyContent:"right"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -13,7 +13,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(-90deg)",justifyContent:"center"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -21,7 +21,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(-90deg)",justifyContent:"left"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -29,7 +29,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(0deg)",justifyContent:"left"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -37,7 +37,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(0deg)",justifyContent:"center"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -45,7 +45,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(0deg)",justifyContent:"right"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -53,7 +53,7 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(-45deg)",justifyContent:"center"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
@@ -61,15 +61,14 @@ function JoiningLine(props) {
             return (
                 <div style={{transform: "rotate(45deg)",justifyContent:"center"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
+                        <line style={{stroke: props.lineColor}} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )
         default:
             return (
-                <div style={{transform: "rotate(-45deg)",justifyContent:"center"}} className="line">
+                <div style={{transform: "rotate(45deg)",justifyContent:"center",position:"absolute",display:"none"}} className="line">
                     <svg  width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
                 </div>
             )

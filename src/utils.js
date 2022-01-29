@@ -1,12 +1,12 @@
 const gameStatus = {
-  playing: 1,
-  draw: 3,
-  transition: 4
+    playing: 1,
+    draw: 3,
+    transition: 4
 }
 
 export const players = {
-  human: "X",
-  AI: "O"
+    human: "X",
+    AI: "O"
 }; // X is human and O is AI
 export function isMovesLeft(board) {
     for (let i = 0; i < 3; i++) {
@@ -68,38 +68,45 @@ export class Move {
     }
 }
 export function getGameStatus(gameState) {
-  // If X has won
-  if (evaluatePosition(gameState.board) === 10) {
-    console.log("X Won!");
-    gameState = levelUp(gameState);
-  }
-  //If O has won
-  else if (evaluatePosition(gameState.board) === -10) {
-    console.log("O won!");
-    gameState = levelDown(gameState);
-  }
-  //If Game is drawn
-  else if (evaluatePosition(gameState.board) === 0 && !isMovesLeft(gameState.board)) {
-    console.log("It's a draw!");
-
-  }
-  return gameState;
+    // If X has won
+    if (evaluatePosition(gameState.board) === 10) {
+        console.log("X Won!");
+        gameState = levelUp(gameState);
+    }
+    //If O has won
+    else if (evaluatePosition(gameState.board) === -10) {
+        console.log("O won!");
+        gameState = levelDown(gameState);
+    }
+    //If Game is drawn
+    else if (evaluatePosition(gameState.board) === 0 && !isMovesLeft(gameState.board)) {
+        console.log("It's a draw!");
+        gameState = levelDraw(gameState);
+    }
+    return gameState;
 }
 
 
-export function levelUp(gameState) {
-  gameState.previousLevel = gameState.currentLevel;
-  gameState.currentLevel++;
-  gameState.gameStatus = gameStatus.transition;
+function levelUp(gameState) {
+    gameState.previousLevel = gameState.currentLevel;
+    gameState.currentLevel++;
+    gameState.gameStatus = gameStatus.transition;
 
-  return gameState;
+    return gameState;
 }
-export function levelDown(gameState) {
-  gameState.previousLevel = gameState.currentLevel;
-  gameState.currentLevel--;
-  gameState.gameStatus = gameStatus.transition;
+function levelDown(gameState) {
+    gameState.previousLevel = gameState.currentLevel;
+    gameState.currentLevel--;
+    gameState.gameStatus = gameStatus.transition;
 
-  return gameState;
+    return gameState;
+}
+
+function levelDraw(gameState){
+    gameState.previousLevel = gameState.currentLevel;
+    gameState.gameStatus = gameStatus.transition;
+
+    return gameState;
 }
 
 export const WINNING_POSITIONS = [
@@ -115,3 +122,14 @@ export const WINNING_POSITIONS = [
     [{ r: 0, c: 0 }, { r: 1, c: 1 }, { r: 2, c: 2 }],
     [{ r: 2, c: 0 }, { r: 1, c: 1 }, { r: 0, c: 2 }],
 ];
+
+export function getGameStateAfterTransition(gameState) {
+    gameState.board = [["", "", ""],
+    ["", "", ""],
+    ["", "", ""]];
+
+    gameState.gameStatus = gameStatus.playing;
+    gameState.playerTurn = players.human;
+
+    return gameState;
+}
