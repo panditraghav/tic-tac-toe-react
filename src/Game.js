@@ -7,6 +7,7 @@ import { boardAnimatmion, circleAnimation, crossAnimation, transitionAnim } from
 import Board from './components/Board';
 import Header from './components/Header';
 import Transition from './components/Transition';
+import Footer from "./components/Footer";
 
 const players = {
   human: "X",
@@ -174,6 +175,7 @@ function Game() {
       {gameState.gameStatus === gameStatus.transition &&
         <Transition gameState={gameState} playerColors={playerColors}/>
       }
+      <Footer />
     </div>
   );
 }

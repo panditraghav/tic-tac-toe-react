@@ -96,13 +96,19 @@ function levelUp(gameState) {
 }
 function levelDown(gameState) {
     gameState.previousLevel = gameState.currentLevel;
-    gameState.currentLevel--;
+
+    if (gameState.currentLevel != 1) {
+        gameState.currentLevel--;
+    }
+    else {
+        gameState.previousLevel = gameState.currentLevel - 1;
+    }
     gameState.gameStatus = gameStatus.transition;
 
     return gameState;
 }
 
-function levelDraw(gameState){
+function levelDraw(gameState) {
     gameState.previousLevel = gameState.currentLevel;
     gameState.gameStatus = gameStatus.transition;
 

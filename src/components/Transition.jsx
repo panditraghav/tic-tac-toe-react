@@ -1,5 +1,6 @@
 import Board from "./Board";
 import JoiningLine from "./JoiningLine";
+import Footer from "./Footer";
 import { getWinningPositionIndex } from "../utils";
 
 function Transition(props) {
@@ -19,6 +20,10 @@ function Transition(props) {
         result = "Draw!";
     }
 
+    if(props.gameState.previousLevel === 0){
+        lineColor = props.playerColors.AI;
+        result = "You Lose!";
+    }
     
 
     console.log(getWinningPositionIndex(props.gameState.board))
@@ -29,7 +34,7 @@ function Transition(props) {
             <div className="result" style={{color: lineColor}}>
                 {result}
             </div>
-
+            <Footer />
         </div>
     )
 }

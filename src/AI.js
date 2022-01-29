@@ -1,4 +1,4 @@
-import { isMovesLeft , evaluatePosition ,findRandomMove , players, Move, WINNING_POSITIONS} from "./utils";
+import { isMovesLeft , evaluatePosition ,findRandomMove , players, Move} from "./utils";
 
 export function findMoveForLevel(board, level) {
     var height = level;
@@ -39,20 +39,6 @@ export function findMoveForLevel(board, level) {
     return move;
 
 }
-
-function getWinningPositionIndex(board) {
-    let winningPositionIndex = -1;
-    WINNING_POSITIONS.forEach((value, index) => {
-        if (board[value[0].r][value[0].c] === board[value[1].r][value[1].c] &&
-            board[value[2].r][value[2].c] === board[value[1].r][value[1].c]) {
-
-            winningPositionIndex = index;
-        }
-    });
-
-    return winningPositionIndex;
-}
-
 
 function minimax(board, depth, isMax, height) {
     let score = evaluatePosition(board);
