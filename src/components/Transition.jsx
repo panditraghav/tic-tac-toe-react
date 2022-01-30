@@ -7,7 +7,6 @@ function Transition(props) {
 
     let result;
     let lineColor;
-    console.log(props.gameState.previousLevel,props.gameState.currentLevel)
     if (props.gameState.previousLevel < props.gameState.currentLevel) {
         lineColor = props.playerColors.human;
         result = "You Won!";
@@ -26,7 +25,6 @@ function Transition(props) {
     }
     
 
-    console.log(getWinningPositionIndex(props.gameState.board))
     return (
         <div>
             <Board className="transition" gameState={props.gameState} level={props.gameState.previousLevel} boxOnClick={(e) => { }} />

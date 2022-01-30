@@ -149,7 +149,6 @@ function Game() {
         setTimeout(() => {
 
           newGameState = getGameStateAfterTransition(newGameState);
-          console.log(newGameState);
           setGameState({
             ...newGameState
           })

@@ -1,5 +1,4 @@
 function JoiningLine(props) {
-    console.log(props.winningPositionIndex)
     switch (props.winningPositionIndex) {
         case 0:
             return (
@@ -66,12 +65,7 @@ function JoiningLine(props) {
                 </div>
             )
         default:
-            return (
-                <div style={{ transform: "rotate(45deg)", justifyContent: "center", position: "absolute", display: "none" }} className="line">
-                    <svg width="14" height="404" viewBox="0 0 14 404" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    </svg>
-                </div>
-            )
+            return null;
 
     }
 }

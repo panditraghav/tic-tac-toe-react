@@ -70,7 +70,6 @@ export class Move {
 export function getGameStatus(gameState) {
     // If X has won
     if (evaluatePosition(gameState.board) === 10) {
-        console.log("X Won!");
         gameState = levelUp(gameState);
     }
     //If O has won
