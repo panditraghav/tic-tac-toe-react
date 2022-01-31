@@ -50,7 +50,7 @@ function JoiningLine(props) {
             )
         case 6:
             return (
-                <div style={{ transform: "rotate(-45deg)", justifyContent: "center" }} className="line">
+                <div style={{ transform: "rotate(-45deg)", justifyContent: "center" ,width:"14px"}} className="line">
                     <svg width="14" height="370" viewBox="0 0 14 370" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line style={{ stroke: props.lineColor }} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>
@@ -58,7 +58,7 @@ function JoiningLine(props) {
             )
         case 7:
             return (
-                <div style={{ transform: "rotate(45deg)", justifyContent: "center" }} className="line">
+                <div style={{ transform: "rotate(45deg)", justifyContent: "center" ,width:"14px"}} className="line">
                     <svg width="14" height="370" viewBox="0 0 14 370" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line style={{ stroke: props.lineColor }} x1="7" y1="7" x2="6.99998" y2="397" stroke="#BC7874" strokeWidth="14" strokeLinecap="round" />
                     </svg>

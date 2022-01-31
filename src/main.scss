@@ -176,16 +176,14 @@ header {
     box-sizing: border-box;
     margin: -378px auto;
     position: relative;
-    width: 300px;
+    width: 214px;
     height: 300px;
     display: flex;
     align-items: center;
-    padding-right: 44px;
-    padding-left: 42px;
 
     svg {
-        stroke-dasharray: 404px 404px;
-        stroke-dashoffset: 404px;
+        stroke-dasharray: 370px 370px;
+        stroke-dashoffset: 370px;
         line {
             stroke: $main-color;
         }
