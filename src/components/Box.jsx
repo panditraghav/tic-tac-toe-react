@@ -2,7 +2,6 @@ import Cross from "./Cross";
 import Circle from "./Circle";
 
 function Box(props) {
-    // console.log(props)
     if (props.mark === "X") {
         return (
 

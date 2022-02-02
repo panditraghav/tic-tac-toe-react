@@ -43,7 +43,6 @@ export function findMoveForLevel(board, level) {
 function minimax(board, depth, isMax, height) {
     let score = evaluatePosition(board);
 
-    // console.log(depth);
     if (height === depth) {
         return score;
     }
@@ -75,7 +74,6 @@ function minimax(board, depth, isMax, height) {
                 }
             }
         }
-        // console.log(best-depth);
         return best - depth;
         // return best;
     }

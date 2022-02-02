@@ -97,14 +97,11 @@ function Game() {
             ...newGameState,
           });
         }, 400)
-        console.log(newGameState);
 
         //Change gameState to playing and clear board
         setTimeout(() => {
-          console.log("New g.s time");
 
           newGameState = getGameStateAfterTransition(newGameState);
-          console.log(newGameState);
 
           setGameState({
             ...newGameState
