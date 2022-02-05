@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import { findMoveForLevel } from './AI';
-import {getGameStateAfterTransition , getGameStatus } from "./utils";
+import { getGameStateAfterTransition, getGameStatus } from "./utils";
 import { useState, useEffect, useRef } from 'react';
 import { boardAnimatmion, circleAnimation, crossAnimation, transitionAnim } from './animations';
 
@@ -47,7 +47,19 @@ function Game() {
   const appRef = useRef();
   const appRefSelector = gsap.utils.selector(appRef);
   const crossCircleTl = useRef();
-  const transitionAnimation = useRef();
+  const boardTl = useRef();
+  const transitionTl = useRef();
+
+  useEffect(() => {
+    boardTl.current = gsap.timeline()
+      .add(boardAnimatmion(appRefSelector))
+    boardTl.current.timeScale(1.5);//decrease the timeline scale 1.5 times (increase speed 1.5 times)
+
+    return () => {
+      gsap.killTweensOf(gsap.getTweensOf(boardTl));
+    }
+
+  });
 
   //Use effect for cross and circles and board animation
   useEffect(() => {
@@ -55,10 +67,12 @@ function Game() {
     crossCircleTl.current = gsap.timeline()
       .add(crossAnimation(appRefSelector))
       .add(circleAnimation(appRefSelector))
-      .add(boardAnimatmion(appRefSelector))
     crossCircleTl.current.timeScale(1.5);//decrease the timeline scale 1.5 times (increase speed 1.5 times)
 
-  });
+    return () => {
+      gsap.killTweensOf(gsap.getTweensOf(crossCircleTl));
+    }
+  }, [gameState.playerTurn, appRefSelector]);
 
 
   //For transition
@@ -66,11 +80,11 @@ function Game() {
 
     if (gameState.gameStatus === gameStatus.transition) {
 
-      transitionAnimation.current = gsap.timeline()
+      transitionTl.current = gsap.timeline()
         .add(transitionAnim(appRefSelector));
     }
 
-  });
+  }, [gameState, appRefSelector]);
 
   function makeAIMove() {
     let newGameState = gameState;
@@ -169,7 +183,7 @@ function Game() {
       }
 
       {gameState.gameStatus === gameStatus.transition &&
-        <Transition gameState={gameState} playerColors={playerColors}/>
+        <Transition gameState={gameState} playerColors={playerColors} />
       }
       <Footer />
     </div>
